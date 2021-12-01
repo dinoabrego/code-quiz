@@ -10,7 +10,10 @@
 <body>
     <header>
             <a href="#highscore">See Highscore</a>
-            <a id="timer">Timer:</a>
+            <div id= "timer" class= "timer">
+                <p>Time:</p>
+                <div id="timer-count">60</div>
+            </div>
     </header>
     <div class= "start-container" id="start-container">
         <h1> Coding Quiz Challenge</h1>
@@ -31,6 +34,15 @@
             <button id= "next-button" class="buttons">Next</button>
         </div>
     </div>
+    <div id= "end-container" class="hidden">
+        <h2>All done!</h2>
+        <a id= "score"></a>
+        <form>
+            <label for="fname">Enter your initials here:</label><br>
+            <input type="text" id="initials" name="initials"><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div> 
 
 
     <script src="./assets/js/script.js"></script>   
