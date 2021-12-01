@@ -1,14 +1,13 @@
 var startButton = document.getElementById('start-button');
 var startContainer = document.getElementById('start-container');
-var questionsContainer = document.getElementById('question-container'); 
+var questionsContainer = document.getElementById('question-container');
 var endContainer = document.getElementById('end-container'); 
+var scoreContainer = document.getElementById('score-container');  
 var questionEl = document.getElementById('questions');
 var answerEl = document.getElementById('answer-btn');
 var nextButton = document.getElementById('next-button');
 var randomQuestion;
 var currentQuestion;
-var scoreCount;
-var scoreText = document.getElementById('score');
 var button;
 
 //Variables for Timer
@@ -16,6 +15,11 @@ var timerEl = document.getElementById('timer-count');
 var timer;
 var timerCount;
 
+//Variables for keeping scores
+var scoreCount;
+var scoreText = document.getElementById('score');
+var submitButton = document.getElementById('submit');
+var scoreButton = document.getElementById('highscore');
 
 //This event starts the game
 startButton.addEventListener('click', startQuiz);
@@ -172,3 +176,24 @@ var questions = [
         ]
     },
 ]
+
+submitButton.addEventListener('click', scorePage);
+
+
+function scorePage () {
+    let input = document.getElementById("userInput").value;
+    console.log(input);
+    console.log(scoreCount);
+    endContainer.classList.add('hidden');
+    scoreContainer.classList.remove('hidden');
+    var nameScore = input.concat(scoreCount);
+    console.log (nameScore);
+
+}
+
+function highscoreList () {
+    var node = document.createElement("LI");
+    var textnode = document.createTextNode(nameScore);
+    node.appendChild(textnode);
+    document.getElementById("score-list").appendChild(node);
+}

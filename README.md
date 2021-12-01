@@ -6,7 +6,11 @@ This Code Quiz uses HTML, CSS and JavaScript skills that have been learned in cl
 
 ## Website Appearance 
 
-![Demo of website functionality.](//insert link here)
+![Demo of quiz start](./assets/images/screenshot1.png)
+
+![Demo of questions.](./assets/images/screenshot2.png)
+
+![Demo of end of quiz.](./assets/images/screenshot3.png)
 
 ## [Published Site](https://dinoabrego.github.io/code-quiz/)
 
