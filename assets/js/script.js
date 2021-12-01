@@ -7,7 +7,8 @@ var answerEl = document.getElementById('answer-btn');
 var nextButton = document.getElementById('next-button');
 var randomQuestion;
 var currentQuestion;
-var score = 0;
+var scoreCount;
+var scoreText = document.getElementById('score');
 var button;
 
 //Variables for Timer
@@ -32,13 +33,22 @@ function startQuiz () {
     randomQuestion = questions.sort(()=>.5-Math.random());
     currentQuestion= 0;
     questionsContainer.classList.remove('hidden');
+    scoreCount= 0;
+    timerCount = 60;
     nextQuestion();
     startTimer()
 }
 
-// 
+//This function starts the timer for the game and manages what happens when time runs out
 function startTimer(){
-
+    timer = setInterval(function() {
+        timerCount--;
+        timerEl.textContent = timerCount;
+        if (timerCount <= 0) {
+          clearInterval(timer);
+          showHighscore();
+        }
+      }, 1000);
 }
 
 //Calls the next question and resets everything to a default state
@@ -69,6 +79,7 @@ function resetState (){
     }
 }
 
+//Establishes what happens when an answer button is clicked
 function selectAnswer (e) {
    var clickedButton = e.target;
    var correct = clickedButton.dataset.correct;
@@ -79,18 +90,20 @@ function selectAnswer (e) {
     nextButton.classList.remove('hidden');
    }
    else {
-       showHighscore()
+       showHighscore();
    }
 }
 
-//Checks if the answer selected is right or wrong, changes the visual look of it, and takes time off the timer 
+//Checks if the answer selected is right or wrong, changes the visual look of it. If right, it adds points to the score, if wrong it takes time off the timer 
 function checkAnswer(element, correct){
-    clearAnswer(element)
+    clearAnswer(element);
     if (correct) {
         element.classList.add('correct');
+        scoreCount = scoreCount +10;
     }
     else {
         element.classList.add('wrong');
+        timerCount = timerCount -5;
     }
 }
 
@@ -102,8 +115,12 @@ function clearAnswer (element) {
 }
 
 function showHighscore () {
+    clearInterval(timer);
+    timerEl.textContent = 0;
     questionsContainer.classList.add('hidden');
     endContainer.classList.remove('hidden');
+    scoreEl.textContent = scoreCount;
+
 }
 
 //Array of questions for the quiz
